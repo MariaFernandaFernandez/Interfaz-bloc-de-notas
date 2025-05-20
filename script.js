@@ -1,5 +1,8 @@
 const backendURL = 'http://localhost:4000/notas';
 
+// Detectar si está en GitHub Pages
+const esGitHubPages = window.location.hostname.includes('github.io');
+
 function guardarNota() {
   const titulo = document.getElementById('titulo').value.trim();
   const texto = document.getElementById('nota').value.trim();
@@ -9,12 +12,18 @@ function guardarNota() {
     return;
   }
 
+  if (esGitHubPages) {
+    alert("💡 Esta es una versión visual de la app.\n\nLas notas no se guardan aquí.");
+    return;
+  }
+
   fetch(backendURL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ titulo, texto })
   })
-    .then(() => {
+    .then(res => {
+      if (!res.ok) throw new Error('Error al guardar');
       document.getElementById('titulo').value = '';
       document.getElementById('nota').value = '';
       cargarNotas();
@@ -23,6 +32,11 @@ function guardarNota() {
 }
 
 function eliminarNota(index) {
+  if (esGitHubPages) {
+    alert("💡 Esta es una demo. No puedes eliminar notas en esta versión.");
+    return;
+  }
+
   fetch(`${backendURL}/${index}`, {
     method: 'DELETE'
   })
@@ -31,6 +45,11 @@ function eliminarNota(index) {
 }
 
 function cargarNotas() {
+  if (esGitHubPages) {
+    // No intenta cargar desde backend si es GitHub Pages
+    return;
+  }
+
   fetch(backendURL)
     .then(res => res.json())
     .then(notas => {
