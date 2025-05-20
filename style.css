@@ -1,0 +1,111 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f8f9fa, #e0f7fa);
+  text-align: center;
+  padding: 30px;
+  color: #333;
+}
+
+h1 {
+  color: #00796b;
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 80%;
+  height: 150px;
+  padding: 15px;
+  border: 2px solid #00796b;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: none;
+  box-shadow: 0 0 10px rgba(0, 121, 107, 0.1);
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #00796b;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #004d40;
+}
+
+#listaNotas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.nota {
+  background-color: #fff59d;
+  padding: 15px;
+  border-radius: 10px;
+  width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  border: 2px solid #00796b;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 8px rgba(0, 121, 107, 0.1);
+}
+
+#listaNotas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.nota {
+  background-color: #fff59d;
+  padding: 15px;
+  border-radius: 12px;
+  width: 220px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  position: relative;
+}
+
+.nota h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #6d4c41;
+}
+
+.nota p {
+  font-size: 14px;
+  color: #333;
+}
+
+.nota button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #e53935;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-weight: bold;
+}
