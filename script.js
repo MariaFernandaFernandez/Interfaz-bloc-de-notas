@@ -1,6 +1,3 @@
-const backendURL = 'http://localhost:4000/notas';
-
-// Detectar si está en GitHub Pages
 const esGitHubPages = window.location.hostname.includes('github.io');
 
 function guardarNota() {
@@ -13,11 +10,11 @@ function guardarNota() {
   }
 
   if (esGitHubPages) {
-    alert("💡 Esta es una versión visual de la app.\n\nLas notas no se guardan aquí.");
+    alert("💡 Esta es una demo visual.\n\nLas notas no se guardan en esta versión publicada.");
     return;
   }
 
-  fetch(backendURL, {
+  fetch('http://localhost:4000/notas', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ titulo, texto })
@@ -37,7 +34,7 @@ function eliminarNota(index) {
     return;
   }
 
-  fetch(`${backendURL}/${index}`, {
+  fetch(`http://localhost:4000/notas/${index}`, {
     method: 'DELETE'
   })
     .then(() => cargarNotas())
@@ -45,12 +42,9 @@ function eliminarNota(index) {
 }
 
 function cargarNotas() {
-  if (esGitHubPages) {
-    // No intenta cargar desde backend si es GitHub Pages
-    return;
-  }
+  if (esGitHubPages) return;
 
-  fetch(backendURL)
+  fetch('http://localhost:4000/notas')
     .then(res => res.json())
     .then(notas => {
       const lista = document.getElementById('listaNotas');
