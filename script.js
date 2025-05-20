@@ -1,4 +1,4 @@
-const esGitHubPages = window.location.hostname.includes('github.io');
+const backendURL = 'https://backend-notas-zb2u.onrender.com/notas';
 
 function guardarNota() {
   const titulo = document.getElementById('titulo').value.trim();
@@ -9,12 +9,7 @@ function guardarNota() {
     return;
   }
 
-  if (esGitHubPages) {
-    alert("💡 Esta es una demo visual.\n\nLas notas no se guardan en esta versión publicada.");
-    return;
-  }
-
-  fetch('http://localhost:4000/notas', {
+  fetch(backendURL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ titulo, texto })
@@ -29,12 +24,7 @@ function guardarNota() {
 }
 
 function eliminarNota(index) {
-  if (esGitHubPages) {
-    alert("💡 Esta es una demo. No puedes eliminar notas en esta versión.");
-    return;
-  }
-
-  fetch(`http://localhost:4000/notas/${index}`, {
+  fetch(`${backendURL}/${index}`, {
     method: 'DELETE'
   })
     .then(() => cargarNotas())
@@ -42,9 +32,7 @@ function eliminarNota(index) {
 }
 
 function cargarNotas() {
-  if (esGitHubPages) return;
-
-  fetch('http://localhost:4000/notas')
+  fetch(backendURL)
     .then(res => res.json())
     .then(notas => {
       const lista = document.getElementById('listaNotas');
@@ -63,3 +51,4 @@ function cargarNotas() {
 }
 
 window.onload = cargarNotas;
+
